@@ -1,0 +1,32 @@
+<script src='spellchecker.js'></script>
+<script>
+onload=function(){
+  var textarea=document.querySelector('#input');
+  var out=document.querySelector('#output');
+  var loader=new SpellChecker.Loader(function(data, text){
+    out.appendChild(SpellChecker.createElement(data, text));
+  })
+  textarea.onkeyup=textarea.onkeydown=textarea.onkeypress=function(){
+    if(loader.update(textarea.value))out.innerHTML=''
+  }
+}
+</script>
+<style>
+.error{width:400px;margin:10px;padding:10px;box-shadow:1px 1px 8px black;}
+</style>
+<textarea rows=10 cols=80 id='input'>
+This software uses SCOWL English word list.
+SCOWL license is shown below.
+
+Copyright 2000-2011 by Kevin Atkinson
+
+Permission to use, copy, modify, distribute and sell these word
+lists, the associated scripts, the output created from the scripts,
+and its documentation for any purpose is hereby granted without fee,
+provided that the above copyright notice appears in all copies and
+that both that copyright notice and this permission notice appear in
+supporting documentation. Kevin Atkinson makes no representations
+about the suitability of this array for any purpose. It is provided
+"as is" without express or implied warranty.
+</textarea><br>
+<div id='output'></div>
